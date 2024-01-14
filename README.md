@@ -1,6 +1,6 @@
 # CS 511: Project 1 HDFS/Spark
 
-Please refer to the instruction at https://docs.google.com/document/d/1SP5NwWpEhpmqUIIaeCQBwk3XMLA11_LJ5Q0rZZdV7rw.
+Please refer to the instructions at [https://ddkang.github.io/teaching/2024-spring/p1](https://ddkang.github.io/teaching/2024-spring/p1).
 
 To get started, spin up the cluster.
 ```bash
