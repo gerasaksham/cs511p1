@@ -12,3 +12,7 @@ chmod 0600 ~/.ssh/authorized_keys
 ####################################################################################
 
 # Setup HDFS/Spark worker here
+
+service ssh start
+$HADOOP_PREFIX/etc/hadoop/hadoop-env.sh
+$HADOOP_PREFIX/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start datanode
