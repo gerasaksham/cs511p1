@@ -16,3 +16,9 @@ RUN ssh-keygen -t rsa -P '' -f ~/.ssh/shared_rsa -C common && \
 ####################################################################################
 
 # Setup HDFS/Spark resources here
+ENV HADOOP_VERSION 3.3.6
+ENV HADOOP_HOME /usr/local/hadoop
+ENV PATH $PATH:$HADOOP_HOME/bin
+
+ADD ./resources/hadoop-terasort-3.3.6.jar $HADOOP_HOME/
+CMD ["java","-jar","$HADOOP_HOME/hadoop-terasort-3.3.6.jar"]

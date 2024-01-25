@@ -12,7 +12,6 @@ chmod 0600 ~/.ssh/authorized_keys
 ####################################################################################
 
 # Setup HDFS/Spark main here
-
-service ssh start
-$HADOOP_PREFIX/etc/hadoop/hadoop-env.sh
-$HADOOP_PREFIX/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR --script hdfs start namenode
+bash $HADOOP_HOME/bin/start-dfs.sh
+bash $HADOOP_HOME/bin/start-mapred.sh
+sleep 20
