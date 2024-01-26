@@ -26,4 +26,8 @@ RUN curl -O https://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION
     mv /usr/local/hadoop-$HADOOP_VERSION $HADOOP_HOME && \
     rm hadoop-$HADOOP_VERSION.tar.gz
 
+RUN MKDIR /usr/local/hdfs/namenode/data
+RUN MKDIR /usr/local/hdfs/datanode/data
+
 ADD ./config-files/core-site.xml $HADOOP_HOME/etc/hadoop/
+ADD ./config-files/hdfs-site.xml $HADOOP_HOME/etc/hadoop/
