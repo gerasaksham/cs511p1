@@ -4,6 +4,7 @@
 FROM openjdk:8
 
 RUN apt update && \
+    apt-get install -y curl && \
     apt upgrade --yes && \
     apt install ssh openssh-server --yes
 
@@ -20,5 +21,9 @@ ENV HADOOP_VERSION 3.3.6
 ENV HADOOP_HOME /usr/local/hadoop
 ENV PATH $PATH:$HADOOP_HOME/bin
 
-ADD ./resources/hadoop-terasort-3.3.6.jar $HADOOP_HOME/
-CMD ["java","-jar","$HADOOP_HOME/hadoop-terasort-3.3.6.jar"]
+RUN curl -O https://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz && \
+    tar -xzvf hadoop-$HADOOP_VERSION.tar.gz -C /usr/local/ && \
+    mv /usr/local/hadoop-$HADOOP_VERSION $HADOOP_HOME && \
+    rm hadoop-$HADOOP_VERSION.tar.gz
+
+ADD ./config-files/core-site.xml $HADOOP_HOME/etc/hadoop/

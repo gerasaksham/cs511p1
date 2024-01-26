@@ -12,4 +12,6 @@ ssh-add ~/.ssh/shared_rsa
 
 # Start HDFS/Spark worker here
 
-bash
+bash ./setup-worker.sh
+
+sleep 20
