@@ -12,7 +12,5 @@ chmod 0600 ~/.ssh/authorized_keys
 ####################################################################################
 
 # Setup HDFS/Spark worker here
-$HADOOP_HOME/bin/hdfs datanode
 
-sleep 20
 

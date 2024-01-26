@@ -17,17 +17,24 @@ RUN ssh-keygen -t rsa -P '' -f ~/.ssh/shared_rsa -C common && \
 ####################################################################################
 
 # Setup HDFS/Spark resources here
+ENV JAVA_HOME=/usr/local/openjdk-8/jre
+ENV PATH $PATH:$JAVA_HOME/bin
 ENV HADOOP_VERSION 3.3.6
 ENV HADOOP_HOME /usr/local/hadoop
 ENV PATH $PATH:$HADOOP_HOME/bin
-
+ENV HDFS_DATANODE_USER root
 RUN curl -O https://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz && \
     tar -xzvf hadoop-$HADOOP_VERSION.tar.gz -C /usr/local/ && \
     mv /usr/local/hadoop-$HADOOP_VERSION $HADOOP_HOME && \
     rm hadoop-$HADOOP_VERSION.tar.gz
 
-RUN MKDIR /usr/local/hdfs/namenode/data
-RUN MKDIR /usr/local/hdfs/datanode/data
+RUN mkdir /usr/local/hdfs/
+RUN mkdir /usr/local/hdfs/namenode
+RUN mkdir /usr/local/hdfs/datanode
+RUN mkdir /usr/local/hdfs/namenode/data
+RUN mkdir /usr/local/hdfs/datanode/data
 
 ADD ./config-files/core-site.xml $HADOOP_HOME/etc/hadoop/
 ADD ./config-files/hdfs-site.xml $HADOOP_HOME/etc/hadoop/
+ADD ./config-files/hadoop-env.sh $HADOOP_HOME/etc/hadoop/
+EXPOSE 9000 50070

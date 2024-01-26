@@ -12,5 +12,3 @@ chmod 0600 ~/.ssh/authorized_keys
 ####################################################################################
 
 # Setup HDFS/Spark main here
-$HADOOP_HOME/bin/hdfs namenode
-sleep 20
