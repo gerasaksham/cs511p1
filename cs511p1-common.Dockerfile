@@ -17,6 +17,8 @@ RUN ssh-keygen -t rsa -P '' -f ~/.ssh/shared_rsa -C common && \
 ####################################################################################
 
 # Setup HDFS/Spark resources here
+
+# HDFS 
 ENV JAVA_HOME=/usr/local/openjdk-8/jre
 ENV PATH $PATH:$JAVA_HOME/bin
 ENV HADOOP_VERSION 3.3.6
@@ -38,3 +40,19 @@ ADD ./config-files/core-site.xml $HADOOP_HOME/etc/hadoop/
 ADD ./config-files/hdfs-site.xml $HADOOP_HOME/etc/hadoop/
 ADD ./config-files/hadoop-env.sh $HADOOP_HOME/etc/hadoop/
 EXPOSE 9000 50070
+
+# Spark
+ENV SPARK_VERSION 3.4.1
+ENV SPARK_HOME /usr/local/spark
+ENV PATH $SPARK_HOME/bin:$PATH
+ENV SPARK_MASTER_HOST main
+ENV SPARK_MASTER_PORT 7077
+ENV SPARK_MASTER "spark://main:7077"
+
+
+RUN curl -O https://archive.apache.org/dist/spark/spark-3.4.1/spark-3.4.1-bin-hadoop3.tgz && \
+    tar -xzvf spark-3.4.1-bin-hadoop3.tgz -C /usr/local/ && \
+    mv /usr/local/spark-3.4.1-bin-hadoop3 /usr/local/spark && \
+    rm spark-3.4.1-bin-hadoop3.tgz
+
+EXPOSE 4040 6066 7077 8080
