@@ -22,4 +22,10 @@ sleep 10
 $HADOOP_HOME/bin/hdfs --daemon start datanode
 
 # # Keep the container running
+
+spark-class org.apache.spark.deploy.master.Master --host $SPARK_MASTER_HOST --port $SPARK_MASTER_PORT &
+sleep 10
+#/usr/local/spark/sbin/start-worker.sh $SPARK_MASTER
+spark-class org.apache.spark.deploy.worker.Worker -m 2G -c 1 $SPARK_MASTER &
+#bash /usr/local/spark/sbin/start-worker.sh -m 2G -c 1 spark://main:7077
 tail -f /dev/null
