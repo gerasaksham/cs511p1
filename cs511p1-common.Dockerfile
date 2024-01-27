@@ -47,7 +47,7 @@ ENV SPARK_HOME /usr/local/spark
 ENV PATH $SPARK_HOME/bin:$PATH
 ENV SPARK_MASTER_HOST main
 ENV SPARK_MASTER_PORT 7077
-ENV SPARK_MASTER "spark://main:7077"
+ENV SPARK_MASTER spark://main:7077
 
 
 RUN curl -O https://archive.apache.org/dist/spark/spark-3.4.1/spark-3.4.1-bin-hadoop3.tgz && \

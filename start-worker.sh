@@ -11,7 +11,7 @@ ssh-add ~/.ssh/shared_rsa
 ####################################################################################
 
 # Start HDFS/Spark worker here
-$HADOOP_HOME/bin/hdfs datanode
-sleep 10
-
-spark-class org.apache.spark.deploy.worker.Worker $SPARK_MASTER
+$HADOOP_HOME/bin/hdfs --daemon start datanode
+sleep 30
+spark-class org.apache.spark.deploy.worker.Worker -m 2G -c 2 $SPARK_MASTER &
+tail -f /dev/null
