@@ -36,9 +36,9 @@ RUN mkdir /usr/local/hdfs/datanode
 RUN mkdir /usr/local/hdfs/namenode/data
 RUN mkdir /usr/local/hdfs/datanode/data
 
-ADD ./config-files/core-site.xml $HADOOP_HOME/etc/hadoop/
-ADD ./config-files/hdfs-site.xml $HADOOP_HOME/etc/hadoop/
-ADD ./config-files/hadoop-env.sh $HADOOP_HOME/etc/hadoop/
+ADD ./conf/core-site.xml $HADOOP_HOME/etc/hadoop/
+ADD ./conf/hdfs-site.xml $HADOOP_HOME/etc/hadoop/
+ADD ./conf/hadoop-env.sh $HADOOP_HOME/etc/hadoop/
 EXPOSE 9000 50070
 
 # Spark
